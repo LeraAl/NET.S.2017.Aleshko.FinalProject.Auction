@@ -1,4 +1,6 @@
-﻿namespace DAL.Interfaces.DTO
+﻿using System;
+
+namespace DAL.Interfaces.DTO
 {
     public class DALLot: IEntity
     {
@@ -19,5 +21,7 @@
         public int OwnerId { get; set; }
 
         public decimal StartPrice { get; set; }
+
+        public DateTime StartDatetime { get; set; }
     }
 }
