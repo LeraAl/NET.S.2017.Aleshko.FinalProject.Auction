@@ -64,7 +64,7 @@ namespace ORM
                 .HasPrecision(0);
 
             modelBuilder.Entity<Rate>()
-                .Property(e => e.Rate)
+                .Property(e => e.RateSize)
                 .HasPrecision(10, 2);
 
             modelBuilder.Entity<Role>()
@@ -90,6 +90,10 @@ namespace ORM
 
             modelBuilder.Entity<User>()
                 .Property(e => e.LastName)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<User>()
+                .Property(e => e.Email)
                 .IsUnicode(false);
 
             modelBuilder.Entity<User>()

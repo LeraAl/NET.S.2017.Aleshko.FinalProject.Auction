@@ -14,7 +14,8 @@ namespace ORM
         [Column(TypeName = "datetime2")]
         public DateTime Datetime { get; set; }
 
-        public decimal Rate { get; set; }
+        [Column("Rate")]
+        public decimal RateSize { get; set; }
 
         public virtual Lot Lots { get; set; }
 
