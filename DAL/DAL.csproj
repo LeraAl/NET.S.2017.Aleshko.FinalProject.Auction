@@ -52,8 +52,12 @@
   <ItemGroup>
     <Compile Include="Logger\ILogger.cs" />
     <Compile Include="Logger\LoggerAdapter.cs" />
+    <Compile Include="Mappers\LotMappers.cs" />
+    <Compile Include="Mappers\RoleMappers.cs" />
     <Compile Include="Mappers\UserMappers.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repositories\LotRepository.cs" />
+    <Compile Include="Repositories\RoleRepository.cs" />
     <Compile Include="Repositories\UnitOfWork.cs" />
     <Compile Include="Repositories\UserRepository.cs" />
   </ItemGroup>
