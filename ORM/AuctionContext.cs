@@ -24,7 +24,7 @@ namespace ORM
 
             modelBuilder.Entity<Category>()
                 .HasMany(e => e.Lots)
-                .WithRequired(e => e.Categories)
+                .WithRequired(e => e.Category)
                 .HasForeignKey(e => e.CategoryId)
                 .WillCascadeOnDelete(false);
 
@@ -56,7 +56,7 @@ namespace ORM
 
             modelBuilder.Entity<LotState>()
                 .HasMany(e => e.Lots)
-                .WithOptional(e => e.LotStates)
+                .WithOptional(e => e.LotState)
                 .HasForeignKey(e => e.StateId);
 
             modelBuilder.Entity<Rate>()
@@ -98,7 +98,7 @@ namespace ORM
 
             modelBuilder.Entity<User>()
                 .HasMany(e => e.Lots)
-                .WithRequired(e => e.Users)
+                .WithRequired(e => e.User)
                 .HasForeignKey(e => e.OwnerId)
                 .WillCascadeOnDelete(false);
 

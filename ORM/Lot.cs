@@ -38,11 +38,11 @@ namespace ORM
         [Column(TypeName = "datetime2")]
         public DateTime StartDatetime { get; set; }
 
-        public virtual Category Categories { get; set; }
+        public virtual Category Category { get; set; }
 
-        public virtual LotState LotStates { get; set; }
+        public virtual LotState LotState { get; set; }
 
-        public virtual User Users { get; set; }
+        public virtual User User { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Rate> Rates { get; set; }
