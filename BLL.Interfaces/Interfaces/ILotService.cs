@@ -3,7 +3,7 @@ using BLL.Interfaces.BLLEntities;
 
 namespace BLL.Interfaces.Interfaces
 {
-    public interface ILotSevice
+    public interface ILotService
     {
         // ToAsk GetAllExcept(int userId);???
         IEnumerable<BLLLot> GetAll();

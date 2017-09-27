@@ -42,7 +42,7 @@
     <Compile Include="Interfaces\ICategoryService.cs" />
     <Compile Include="Interfaces\IUserService.cs" />
     <Compile Include="Interfaces\IRateService.cs" />
-    <Compile Include="Interfaces\ILotSevice.cs" />
+    <Compile Include="Interfaces\ILotService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup />

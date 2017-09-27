@@ -10,7 +10,7 @@ using DAL.Interfaces.Repositories;
 
 namespace BLL.Services
 {
-    class LotService: ILotSevice
+    public class LotService: ILotService
     {
         private readonly IUnitOfWork _uow;
         private readonly ILotRepository _lotRepository;
