@@ -1,4 +1,5 @@
-﻿using DAL.Interfaces.DTO;
+﻿using System;
+using DAL.Interfaces.DTO;
 using ORM;
 
 namespace DAL.Mappers
@@ -7,6 +8,8 @@ namespace DAL.Mappers
     {
         public static Lot ToLot(this DALLot lot)
         {
+            if (lot == null) return null;
+            
             return new Lot()
             {
                 Id =  lot.Id,
@@ -24,6 +27,8 @@ namespace DAL.Mappers
 
         public static DALLot ToDALLot(this Lot lot)
         {
+            if (lot == null) return null;
+
             return new DALLot()
             {
                 Id = lot.Id,

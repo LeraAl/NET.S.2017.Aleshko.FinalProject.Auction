@@ -28,6 +28,11 @@ namespace DAL.Repositories
             return _context.Set<Lot>().Where(l => l.CategoryId == id).Select(l => l.ToDALLot());
         }
 
+        public IEnumerable<DALLot> GetByLotStateId(int id)
+        {
+            return _context.Set<Lot>().Where(l => l.StateId == id).Select(l => l.ToDALLot());
+        }
+
         public DALLot GetById(int id)
         {
             return _context.Set<Lot>().FirstOrDefault(l => l.Id == id).ToDALLot();

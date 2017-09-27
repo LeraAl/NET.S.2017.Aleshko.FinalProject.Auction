@@ -8,7 +8,7 @@ namespace DAL.Mappers
     {
         public static DALUser ToDALUser(this User user)
         {
-            if (user == null) throw new ArgumentNullException(nameof(user));
+            if (user == null) return null;
 
             return new DALUser()
             {
@@ -23,7 +23,7 @@ namespace DAL.Mappers
 
         public static User ToORMUser(this DALUser user)
         {
-            if (user == null) throw new ArgumentNullException(nameof(user));
+            if (user == null) return null;
 
             return new User()
             {
