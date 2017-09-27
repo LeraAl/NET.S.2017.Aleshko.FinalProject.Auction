@@ -63,6 +63,13 @@ namespace DAL.Repositories
                 _context.Set<User>().Remove(entity);
         }
 
+        public DALUser GetByLogin(string login)
+        {
+            return _context.Set<User>()
+                .FirstOrDefault(u => String.Equals(login, u.Login, StringComparison.InvariantCultureIgnoreCase))
+                .ToDALUser();
+        }
+
         public IEnumerable<DALUser> GetByRoleId(int id)
         {
             return _context.Set<User>()
