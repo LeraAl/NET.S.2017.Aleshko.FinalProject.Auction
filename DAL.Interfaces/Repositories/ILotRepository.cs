@@ -10,5 +10,6 @@ namespace DAL.Interfaces.Repositories
         IEnumerable<DALLot> GetByCategoryId(int id);
         IEnumerable<DALLot> GetByLotStateId(int id);
         IEnumerable<DALLot> GetByPriceRange(decimal minPrice, decimal maxPrice);
+        void AddRate(int lotId, DALRate rate);
     }
 }

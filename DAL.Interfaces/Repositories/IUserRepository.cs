@@ -5,6 +5,7 @@ namespace DAL.Interfaces.Repositories
 {
     public interface IUserRepository: IRepository<DALUser>
     {
+        DALUser GetByLogin(string login);
         IEnumerable<DALUser> GetByRoleId(int id);
     }
 }
