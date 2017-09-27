@@ -56,7 +56,7 @@ namespace ORM
 
             modelBuilder.Entity<LotState>()
                 .HasMany(e => e.Lots)
-                .WithOptional(e => e.LotState)
+                .WithRequired(e => e.LotState)
                 .HasForeignKey(e => e.StateId);
 
             modelBuilder.Entity<Rate>()

@@ -25,7 +25,7 @@ namespace ORM
 
         public int CategoryId { get; set; }
 
-        public int? StateId { get; set; }
+        public int StateId { get; set; }
 
         public byte[] Image { get; set; }
 

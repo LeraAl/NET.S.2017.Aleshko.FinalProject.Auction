@@ -39,14 +39,6 @@
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
-    <Reference Include="System.Runtime.Serialization" />
-    <Reference Include="System.Security" />
-    <Reference Include="System.Xml.Linq" />
-    <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="Microsoft.CSharp" />
-    <Reference Include="System.Data" />
-    <Reference Include="System.Net.Http" />
-    <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AuctionContext.cs" />
@@ -56,6 +48,10 @@
     <Compile Include="Migrations\201709212013143_Init.cs" />
     <Compile Include="Migrations\201709212013143_Init.Designer.cs">
       <DependentUpon>201709212013143_Init.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201709271505532_LotStateRequired.cs" />
+    <Compile Include="Migrations\201709271505532_LotStateRequired.Designer.cs">
+      <DependentUpon>201709271505532_LotStateRequired.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -70,6 +66,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201709212013143_Init.resx">
       <DependentUpon>201709212013143_Init.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201709271505532_LotStateRequired.resx">
+      <DependentUpon>201709271505532_LotStateRequired.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
