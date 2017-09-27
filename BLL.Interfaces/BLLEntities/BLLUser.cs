@@ -16,7 +16,7 @@ namespace BLL.Interfaces.BLLEntities
 
         public string Password { get; set; }
 
-        public IEnumerable<string> Roles { get; set; }
+        //public IEnumerable<string> Roles { get; set; } ToAsk
         
     }
 }

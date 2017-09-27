@@ -7,13 +7,13 @@ namespace BLL.Interfaces.BLLEntities
         public int Id { get; set; }
 
         public int UserId { get; set; }
-        public int UserName { get; set; }
+        //public int UserName { get; set; } ToAsk
 
         public int LotId { get; set; }
-        public string LotName { get; set; }
+        //public string LotName { get; set; } ToAsk
 
-        public decimal RateSixe { get; set; }
+        public decimal RateSize { get; set; }
 
-        public DateTime DateTime { get; set; }
+        public DateTime Datetime { get; set; }
     }
 }

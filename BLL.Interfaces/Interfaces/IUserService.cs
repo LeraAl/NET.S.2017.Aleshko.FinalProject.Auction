@@ -7,13 +7,14 @@ namespace BLL.Interfaces.Interfaces
     public interface IUserService
     {
         IEnumerable<BLLUser> GetAll();
-        IEnumerable<BLLUser> GetAllByRole(string roleName);
+        IEnumerable<BLLUser> GetAllByRole(int roleId);
         BLLUser GetById(int id);
         BLLUser GetByLogin(string login);
+        IEnumerable<BLLRole> GetAllRoles();
 
         void Create(BLLUser user);
-        void Delete(int id);
+        void Delete(BLLUser user);
         void UpdatePassword(int id, string newPassword);
-        void UpdateFirstAndLastNames(int id, string firstName, string lastName);
+        void Update(BLLUser user);
     }
 }

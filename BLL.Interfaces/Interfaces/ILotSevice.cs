@@ -15,9 +15,9 @@ namespace BLL.Interfaces.Interfaces
         void AddRate(int lotId, BLLRate rate);
 
         void Create(BLLLot lot);
-        void CanUserUpdate(int id);
+        bool CanUserUpdate(int id);
         void Update(BLLLot lot);
         bool CanUserDelete(int id);
-        void Delete(int id);
+        void Delete(BLLLot lot);
     }
 }
