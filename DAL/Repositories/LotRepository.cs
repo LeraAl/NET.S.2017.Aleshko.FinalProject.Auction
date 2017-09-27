@@ -38,14 +38,11 @@ namespace DAL.Repositories
             return _context.Set<Lot>().FirstOrDefault(l => l.Id == id).ToDALLot();
         }
 
-        public IEnumerable<DALLot> GetByMaxPrice(decimal maxPrice)
+        public IEnumerable<DALLot> GetByPriceRange(decimal minPrice, decimal maxPrice)
         {
-            return _context.Set<Lot>().Where(l => l.Price <= maxPrice).Select(l => l.ToDALLot());
-        }
-
-        public IEnumerable<DALLot> GetByMinPrice(decimal minPrice)
-        {
-            return _context.Set<Lot>().Where(l => l.Price >= minPrice).Select(l => l.ToDALLot());
+            return _context.Set<Lot>()
+                .Where(l => l.Price >= minPrice && l.Price <= maxPrice)
+                .Select(l => l.ToDALLot());
         }
 
         public IEnumerable<DALLot> GetByName(string name)

@@ -9,7 +9,6 @@ namespace DAL.Interfaces.Repositories
         IEnumerable<DALLot> GetByName(string name);
         IEnumerable<DALLot> GetByCategoryId(int id);
         IEnumerable<DALLot> GetByLotStateId(int id);
-        IEnumerable<DALLot> GetByMinPrice(decimal minPrice);
-        IEnumerable<DALLot> GetByMaxPrice(decimal maxPrice);
+        IEnumerable<DALLot> GetByPriceRange(decimal minPrice, decimal maxPrice);
     }
 }

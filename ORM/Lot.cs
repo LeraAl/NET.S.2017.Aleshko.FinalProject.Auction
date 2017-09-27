@@ -37,7 +37,7 @@ namespace ORM
 
         [Column(TypeName = "datetime2")]
         public DateTime StartDatetime { get; set; }
-
+        
         public virtual Category Category { get; set; }
 
         public virtual LotState LotState { get; set; }
