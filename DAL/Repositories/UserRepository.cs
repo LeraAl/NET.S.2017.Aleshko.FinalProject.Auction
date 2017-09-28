@@ -22,12 +22,16 @@ namespace DAL.Repositories
         
         public IEnumerable<DALUser> GetAll()
         {
-            return _context.Set<User>().Select(u => u.ToDALUser());
+            return _context.Set<User>()
+                .ToList()
+                .Select(u => u.ToDALUser());
         }
 
         public DALUser GetById(int id)
         {
-            return _context.Set<User>().FirstOrDefault(u => u.Id == id).ToDALUser();
+            return _context.Set<User>()
+                .FirstOrDefault(u => u.Id == id)
+                .ToDALUser();
         }
 
         public void Create(DALUser entity)
@@ -74,6 +78,7 @@ namespace DAL.Repositories
         {
             return _context.Set<User>()
                 .Where(u => u.Roles.Any(r => r.Id == id))
+                .ToList()
                 .Select(u => u.ToDALUser());
         }
     }

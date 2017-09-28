@@ -20,17 +20,17 @@ namespace DAL.Repositories
 
         public IEnumerable<DALLot> GetAll()
         {
-            return _context.Set<Lot>().Select(l => l.ToDALLot());
+            return _context.Set<Lot>().ToList().Select(l => l.ToDALLot());
         }
 
         public IEnumerable<DALLot> GetByCategoryId(int id)
         {
-            return _context.Set<Lot>().Where(l => l.CategoryId == id).Select(l => l.ToDALLot());
+            return _context.Set<Lot>().Where(l => l.CategoryId == id).ToList().Select(l => l.ToDALLot());
         }
 
         public IEnumerable<DALLot> GetByLotStateId(int id)
         {
-            return _context.Set<Lot>().Where(l => l.StateId == id).Select(l => l.ToDALLot());
+            return _context.Set<Lot>().Where(l => l.StateId == id).ToList().Select(l => l.ToDALLot());
         }
 
         public DALLot GetById(int id)
@@ -42,19 +42,29 @@ namespace DAL.Repositories
         {
             return _context.Set<Lot>()
                 .Where(l => l.Price >= minPrice && l.Price <= maxPrice)
+                .ToList()
                 .Select(l => l.ToDALLot());
+        }
+
+        public void AddRate(int lotId, DALRate rate)
+        {
+            throw new NotImplementedException();
         }
 
         public IEnumerable<DALLot> GetByName(string name)
         {
             return _context.Set<Lot>()
                 .Where(l => String.Equals(name, l.Name, StringComparison.InvariantCultureIgnoreCase))
+                .ToList()
                 .Select(l => l.ToDALLot());
         }
 
         public IEnumerable<DALLot> GetByUserId(int id)
         {
-            return _context.Set<Lot>().Where(l => l.OwnerId == id).Select(l => l.ToDALLot());
+            return _context.Set<Lot>()
+                .Where(l => l.OwnerId == id)
+                .ToList()
+                .Select(l => l.ToDALLot());
         }
 
         public void Create(DALLot lot)

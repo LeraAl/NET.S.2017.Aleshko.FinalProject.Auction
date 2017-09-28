@@ -20,7 +20,7 @@ namespace DAL.Repositories
 
         public IEnumerable<DALCategory> GetAll()
         {
-            return _context.Set<Category>().Select(c => c.ToDALCategory());
+            return _context.Set<Category>().ToList().Select(c => c.ToDALCategory());
         }
 
         public DALCategory GetById(int id)

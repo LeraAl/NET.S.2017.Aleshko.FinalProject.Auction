@@ -20,12 +20,16 @@ namespace DAL.Repositories
 
         public IEnumerable<DALRole> GetAll()
         {
-            return _context.Set<Role>().Select(r => r.ToDALRole());
+            return _context.Set<Role>()
+                .ToList()
+                .Select(r => r.ToDALRole());
         }
 
         public DALRole GetById(int id)
         {
-            return _context.Set<Role>().FirstOrDefault(r => r.Id == id).ToDALRole();
+            return _context.Set<Role>()
+                .FirstOrDefault(r => r.Id == id)
+                .ToDALRole();
         }
 
         public void Create(DALRole role)
@@ -60,7 +64,8 @@ namespace DAL.Repositories
         public DALRole GetByName(string name)
         {
             return _context.Set<Role>()
-                .FirstOrDefault(r => String.Equals(name, r.Name, StringComparison.InvariantCultureIgnoreCase)).ToDALRole();
+                .FirstOrDefault(r => String.Equals(name, r.Name, StringComparison.InvariantCultureIgnoreCase))
+                .ToDALRole();
         }
 
         public void AddRoleToUser(DALUser user, DALRole role)

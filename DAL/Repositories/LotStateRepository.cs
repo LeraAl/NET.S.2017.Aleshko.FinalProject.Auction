@@ -20,12 +20,16 @@ namespace DAL.Repositories
 
         public IEnumerable<DALLotState> GetAll()
         {
-            return _context.Set<LotState>().Select(s => s.ToDALLotState());
+            return _context.Set<LotState>()
+                .ToList()
+                .Select(s => s.ToDALLotState());
         }
 
         public DALLotState GetById(int id)
         {
-            return _context.Set<LotState>().FirstOrDefault(s => s.Id == id).ToDALLotState();
+            return _context.Set<LotState>()
+                .FirstOrDefault(s => s.Id == id)
+                .ToDALLotState();
         }
 
         public DALLotState GetByName(string name)

@@ -21,6 +21,7 @@ namespace DAL.Repositories
         public IEnumerable<DALRate> GetAll()
         {
             return _context.Set<Rate>()
+                .ToList()
                 .Select(r => r.ToDALRate());
         }
 
@@ -35,6 +36,7 @@ namespace DAL.Repositories
         {
             return _context.Set<Rate>()
                 .Where(r => r.UserId == id)
+                .ToList()
                 .Select(r => r.ToDALRate());
         }
 
@@ -42,6 +44,7 @@ namespace DAL.Repositories
         {
             return _context.Set<Rate>()
                 .Where(r => r.LotId == id)
+                .ToList()
                 .Select(r => r.ToDALRate());
         }
 
@@ -50,7 +53,8 @@ namespace DAL.Repositories
             return _context.Set<Rate>()
                 .Where(r => r.LotId == lotId)
                 .OrderBy(r => r.Datetime)
-                .FirstOrDefault().ToDALRate();
+                .FirstOrDefault()
+                .ToDALRate();
         }
 
         public void Create(DALRate rate)
