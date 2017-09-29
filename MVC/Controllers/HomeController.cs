@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using BLL.Interfaces.BLLEntities;
 using BLL.Interfaces.Interfaces;
 
 namespace MVC.Controllers
@@ -10,11 +11,13 @@ namespace MVC.Controllers
     public class HomeController : Controller
     {
 
-        private readonly IUserService _userService;
+        private readonly ILotService _lotService;
+        private readonly ICategoryService _categoryService;
 
-        public HomeController(IUserService userService)
+        public HomeController(ILotService lotService, ICategoryService categoryService)
         {
-            _userService = userService;
+            _categoryService = categoryService ?? throw new ArgumentNullException(nameof(categoryService));
+            _lotService = lotService ?? throw new ArgumentNullException(nameof(lotService));
         }
 
 
@@ -23,11 +26,34 @@ namespace MVC.Controllers
             return View();
         }
 
-        public ActionResult About()
+        [ChildActionOnly]
+        public PartialViewResult CategoriesMenu()
         {
-            ViewBag.Message = "Your application description page.";
+            var categories = _categoryService.GetAll();
+            return PartialView("_CategoriesMenu", categories);
+        }
 
-            return View();
+        public PartialViewResult GetLots(int? id)
+        {
+            IEnumerable<BLLLot> lots;
+            if (id == null || id == 0)
+            {
+                lots = _lotService.GetAll();
+            }
+            else
+            {
+                lots = _lotService.GetByCategory((int)id);
+            }
+
+            return PartialView("_LotsList", lots);
+        }
+
+        public JsonResult SearchLot(string term)
+        {
+            var lots = _lotService.GetLotByRegex(term)
+                .Select(l => new {id = l.Id, label = l.Name, value = l.Name});
+
+            return Json(lots, JsonRequestBehavior.AllowGet);
         }
 
         public ActionResult Error()

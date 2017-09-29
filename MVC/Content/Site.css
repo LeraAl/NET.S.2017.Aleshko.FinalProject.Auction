@@ -22,3 +22,14 @@ select,
 textarea {
     max-width: 280px;
 }
+
+footer {
+    position: fixed;
+    left:5%;
+    bottom: 0;
+    width: 100%;
+}
+.navbar-brand>img {
+    padding: 7px 14px;
+    height: 70px;
+}

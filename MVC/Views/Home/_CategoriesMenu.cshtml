@@ -1,0 +1,15 @@
+﻿@model IEnumerable<BLL.Interfaces.BLLEntities.BLLCategory>
+
+<div class="list-group">
+    <a href="@Url.Action("GetLots")" class="list-group-item active">Show All</a>
+    @foreach (var item in Model)
+    {
+
+        <a class="list-group-item" href="@Url.Action("GetLots", new {id = @item.Id})">
+            @Html.DisplayFor(modelItem => item.Name)
+        </a>
+    }
+</div>
+
+
+
