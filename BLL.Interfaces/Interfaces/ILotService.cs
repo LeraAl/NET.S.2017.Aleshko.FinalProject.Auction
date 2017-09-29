@@ -10,7 +10,7 @@ namespace BLL.Interfaces.Interfaces
         IEnumerable<BLLLot> GetAllExcept(int userId);
         IEnumerable<BLLLot> GetUserLots(int userId);
         IEnumerable<BLLLot> GetByCategory(int categoryId);
-        IEnumerable<string> GetLotNames();
+        IEnumerable<BLLLot> GetLotByRegex(string regex);
 
         void AddRate(int lotId, BLLRate rate);
 

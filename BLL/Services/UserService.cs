@@ -41,6 +41,16 @@ namespace BLL.Services
             return _userRepository.GetByLogin(login).ToBLLUser();
         }
 
+        public void AddRoleToUser(int userId, BLLRole role)
+        {
+            _roleRepository.AddRoleToUser(GetById(userId).ToDALUser(), role.ToDALRole());
+        }
+
+        public IEnumerable<BLLRole> GetUserRoles(int userId)
+        {
+            return _roleRepository.GetUserRoles(userId).Select(r => r.ToBLLRole());
+        }
+
         public IEnumerable<BLLRole> GetAllRoles()
         {
             return _roleRepository.GetAll().Select(r => r.ToBLLRole());

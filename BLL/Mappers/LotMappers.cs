@@ -9,12 +9,14 @@ namespace BLL.Mappers
     {
         public static BLLLot ToBLLLot(this DALLot lot)
         {
+            if (lot == null) return null;
+
             return new BLLLot()
             {
                 Id = lot.Id,
                 Name = lot.Name,
                 CategoryId = lot.CategoryId,
-                Description = Encoding.ASCII.GetString(lot.Description),
+                Description = lot.Description != null ? Encoding.ASCII.GetString(lot.Description) : null,
                 OwnerId  = lot.OwnerId,
                 Image = lot.Image,
                 StartPrice = lot.StartPrice,
@@ -25,6 +27,8 @@ namespace BLL.Mappers
 
         public static DALLot ToDALLot(this BLLLot lot)
         {
+            if (lot == null) return null;
+
             return new DALLot()
             {
                 Id = lot.Id,

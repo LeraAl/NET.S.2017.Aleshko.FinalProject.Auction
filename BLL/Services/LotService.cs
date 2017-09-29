@@ -43,9 +43,9 @@ namespace BLL.Services
             return _lotRepository.GetAll().Where(l => l.CategoryId == categoryId).Select(l => l.ToBLLLot());
         }
 
-        public IEnumerable<string> GetLotNames()
+        public IEnumerable<BLLLot> GetLotByRegex(string regex)
         {
-            return _lotRepository.GetAll().Select(l => l.Name);
+            return _lotRepository.GetAll().Where(l => l.Name.IndexOf(regex, StringComparison.InvariantCultureIgnoreCase) != -1).Select(l => l.ToBLLLot());
         }
 
         public void AddRate(int lotId, BLLRate rate)

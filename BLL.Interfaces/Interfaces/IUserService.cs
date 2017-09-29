@@ -10,6 +10,8 @@ namespace BLL.Interfaces.Interfaces
         IEnumerable<BLLUser> GetAllByRole(int roleId);
         BLLUser GetById(int id);
         BLLUser GetByLogin(string login);
+        void AddRoleToUser(int userId, BLLRole role);
+        IEnumerable<BLLRole> GetUserRoles(int userId);
         IEnumerable<BLLRole> GetAllRoles();
 
         void Create(BLLUser user);

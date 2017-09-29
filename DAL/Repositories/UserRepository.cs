@@ -69,9 +69,11 @@ namespace DAL.Repositories
 
         public DALUser GetByLogin(string login)
         {
-            return _context.Set<User>()
-                .FirstOrDefault(u => String.Equals(login, u.Login, StringComparison.InvariantCultureIgnoreCase))
-                .ToDALUser();
+            var users = _context.Set<User>();
+            var user = users.FirstOrDefault(u =>
+                String.Equals(login, u.Login));
+
+            return user.ToDALUser();
         }
 
         public IEnumerable<DALUser> GetByRoleId(int id)

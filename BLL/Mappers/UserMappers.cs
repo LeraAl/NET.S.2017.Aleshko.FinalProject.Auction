@@ -7,6 +7,8 @@ namespace BLL.Mappers
     {
         public static BLLUser ToBLLUser(this DALUser user)
         {
+            if (user == null) return null;
+
             return new BLLUser()
             {
                 Id = user.Id,
@@ -20,6 +22,8 @@ namespace BLL.Mappers
 
         public static DALUser ToDALUser(this BLLUser user)
         {
+            if (user == null) return null;
+
             return new DALUser()
             {
                 Id = user.Id,

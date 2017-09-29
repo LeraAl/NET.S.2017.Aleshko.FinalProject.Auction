@@ -7,6 +7,8 @@ namespace BLL.Mappers
     {
         public static BLLCategory ToBLLCategory(this DALCategory category)
         {
+            if (category == null) return null;
+
             return new BLLCategory()
             {
                 Id = category.Id,
@@ -16,6 +18,8 @@ namespace BLL.Mappers
 
         public static DALCategory ToDALCategory(this BLLCategory category)
         {
+            if (category == null) return null;
+
             return new DALCategory()
             {
                 Id = category.Id,

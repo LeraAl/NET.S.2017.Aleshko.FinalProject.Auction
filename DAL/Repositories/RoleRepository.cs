@@ -68,6 +68,15 @@ namespace DAL.Repositories
                 .ToDALRole();
         }
 
+        public IEnumerable<DALRole> GetUserRoles(int userId)
+        {
+            return _context.Set<User>()
+                .FirstOrDefault(u => u.Id == userId)
+                ?.Roles
+                .ToList()
+                .Select(r => r.ToDALRole());
+        }
+
         public void AddRoleToUser(DALUser user, DALRole role)
         {
             if (role == null) throw new ArgumentNullException(nameof(role));

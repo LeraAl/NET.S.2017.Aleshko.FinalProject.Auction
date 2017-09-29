@@ -7,6 +7,8 @@ namespace BLL.Mappers
     {
         public static BLLRate ToBLLRate(this DALRate rate)
         {
+            if (rate == null) return null;
+
             return new BLLRate()
             {
                 Id = rate.Id,
@@ -19,6 +21,8 @@ namespace BLL.Mappers
 
         public static DALRate ToDALRate(this BLLRate rate)
         {
+            if (rate == null) return null;
+
             return new DALRate()
             {
                 Id = rate.Id,
