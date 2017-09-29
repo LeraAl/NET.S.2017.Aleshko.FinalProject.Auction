@@ -21,7 +21,7 @@ namespace ORM
         public string Login { get; set; }
 
         [Required]
-        [StringLength(20)]
+        [StringLength(100)]
         public string Password { get; set; }
 
         [Required]
