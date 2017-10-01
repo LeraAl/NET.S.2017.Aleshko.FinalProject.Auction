@@ -1,8 +1,7 @@
 ﻿using System.Collections.Generic;
-using System.Runtime.InteropServices;
 using BLL.Interfaces.BLLEntities;
 
-namespace BLL.Interfaces.Interfaces
+namespace BLL.Interfaces.Services
 {
     public interface ICategoryService
     {

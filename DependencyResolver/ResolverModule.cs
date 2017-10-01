@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using BLL.Interfaces.Interfaces;
+using BLL.Interfaces.Services;
 using BLL.Services;
 using DAL.Interfaces.Repositories;
 using DAL.Repositories;
@@ -29,12 +30,12 @@ namespace DependencyResolver
             #endregion
 
             #region Repositories
-            kernel.Bind<IUserRepository>().To<UserRepository>();
-            kernel.Bind<IRoleRepository>().To<RoleRepository>();
-            kernel.Bind<ILotRepository>().To<LotRepository>();
-            kernel.Bind<ILotStateRepository>().To<LotStateRepository>();
-            kernel.Bind<IRateRepository>().To<RateRepository>();
-            kernel.Bind<ICategoryRepository>().To<CategoryRepository>();
+            kernel.Bind<IUserRepository>().To<UserRepository>().InRequestScope();
+            kernel.Bind<IRoleRepository>().To<RoleRepository>().InRequestScope();
+            kernel.Bind<ILotRepository>().To<LotRepository>().InRequestScope();
+            kernel.Bind<ILotStateRepository>().To<LotStateRepository>().InRequestScope();
+            kernel.Bind<IRateRepository>().To<RateRepository>().InRequestScope();
+            kernel.Bind<ICategoryRepository>().To<CategoryRepository>().InRequestScope();
             #endregion
         }
     }

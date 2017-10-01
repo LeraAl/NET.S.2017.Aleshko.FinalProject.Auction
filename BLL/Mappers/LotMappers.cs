@@ -1,13 +1,15 @@
 ﻿using System;
 using System.Text;
 using BLL.Interfaces.BLLEntities;
+using BLL.Interfaces.Interfaces;
 using DAL.Interfaces.DTO;
+using DAL.Interfaces.Repositories;
 
 namespace BLL.Mappers
 {
     public static class LotMappers
     {
-        public static BLLLot ToBLLLot(this DALLot lot)
+        public static BLLLot ToBLLLot(this DALLot lot, ILotStateRepository lotStateRepository, IUserRepository userRepository, ICategoryRepository categoryRepository)
         {
             if (lot == null) return null;
 
@@ -21,7 +23,11 @@ namespace BLL.Mappers
                 Image = lot.Image,
                 StartPrice = lot.StartPrice,
                 CurrentPrice = lot.Price,
-                StateId = lot.StateId
+                StateId = lot.StateId,
+                StartDatetime = lot.StartDatetime,
+                Owner = userRepository.GetById(lot.OwnerId).ToBLLUser(),
+                Category = categoryRepository.GetById(lot.CategoryId).ToBLLCategory(),
+                State = lotStateRepository.GetById(lot.StateId).Name
             };
         }
 
@@ -38,8 +44,9 @@ namespace BLL.Mappers
                 OwnerId = lot.OwnerId,
                 Image = lot.Image,
                 StartPrice = lot.StartPrice,
-                Price = lot.CurrentPrice
-                //ToASK как получить имя категории юзера и т.д.
+                Price = lot.CurrentPrice,
+                StartDatetime = lot.StartDatetime,
+                StateId = lot.StateId
             };
         }
     }

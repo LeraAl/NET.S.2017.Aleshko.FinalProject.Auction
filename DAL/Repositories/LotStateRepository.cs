@@ -35,7 +35,7 @@ namespace DAL.Repositories
         public DALLotState GetByName(string name)
         {
             return _context.Set<LotState>()
-                .FirstOrDefault(s => String.Equals(name, s.Name, StringComparison.InvariantCultureIgnoreCase))
+                .FirstOrDefault(s => s.Name.Equals(name, StringComparison.InvariantCultureIgnoreCase))
                 .ToDALLotState();
         }
 

@@ -18,11 +18,7 @@ namespace MVC.Controllers
         {
             _userService = userService ?? throw new ArgumentNullException(nameof(userService));
         }
-
-        public ActionResult Index()
-        {
-            return View();
-        }
+        
 
         #region Register
 

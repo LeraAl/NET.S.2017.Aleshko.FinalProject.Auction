@@ -7,10 +7,10 @@ namespace BLL.Interfaces.BLLEntities
         public int Id { get; set; }
 
         public int UserId { get; set; }
-        //public int UserName { get; set; } ToAsk
+        public string UserName { get; set; } 
 
         public int LotId { get; set; }
-        //public string LotName { get; set; } ToAsk
+        public string LotName { get; set; } 
 
         public decimal RateSize { get; set; }
 

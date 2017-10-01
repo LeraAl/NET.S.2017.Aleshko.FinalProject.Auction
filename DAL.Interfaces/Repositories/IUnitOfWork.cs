@@ -1,6 +1,8 @@
-﻿namespace DAL.Interfaces.Repositories
+﻿using System;
+
+namespace DAL.Interfaces.Repositories
 {
-    public interface IUnitOfWork
+    public interface IUnitOfWork: IDisposable
     {
         void Commit();
     }

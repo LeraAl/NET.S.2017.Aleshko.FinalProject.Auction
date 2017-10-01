@@ -1,0 +1,19 @@
+﻿@model IEnumerable<BLL.Interfaces.BLLEntities.BLLCategory>
+
+@{
+    string controller = (string)TempData["Controller"];
+} 
+
+<div class="list-group">
+    <a href="@Url.Action("GetLots", @controller)" class="list-group-item active">Show All</a>
+    @foreach (var item in Model)
+    {
+
+        <a class="list-group-item" href="@Url.Action("GetLots", @controller, new {id = @item.Id})">
+            @Html.DisplayFor(modelItem => item.Name) 
+        </a>
+    }
+</div>
+
+
+

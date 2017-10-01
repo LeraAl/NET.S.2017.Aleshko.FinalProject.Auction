@@ -24,8 +24,8 @@ namespace MVC
                 "{*catchall}",
                 new
                 {
-                    Controller = "Home",
-                    Action = "Error"
+                    Controller = "Error",
+                    Action = "PageNotFound"
                 });
         }
     }

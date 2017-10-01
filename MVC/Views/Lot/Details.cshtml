@@ -1,0 +1,118 @@
+﻿ @model MVC.Models.Lot.LotViewModel
+
+@{
+    ViewBag.Title = @Model.Name;
+    ViewBag.LotId = @Model.Id;
+}
+
+<h2>@Model.Name</h2>
+
+<hr />
+<div class="container">
+    <div class="container">
+        @if (Model.Image != null)
+        {
+            <img class="img-thumbnail pull-left img-lot-details" src="@Url.Action("GetImage", "Home", new {id = Model.Id})" alt="@Model.Name">
+        }
+        <div>
+            <p>
+                <b>Category</b>: @Html.DisplayFor(model => model.Category)
+            </p>
+            <p id="price">
+                <b>Price</b>: @Html.DisplayFor(model => model.CurrentPrice)
+            </p>
+            <p>
+                <b>Start Price</b>: @Html.DisplayFor(model => model.StartPrice)
+            </p>
+            <p>
+                <b>Lot state</b>: @Html.DisplayFor(model => model.State)
+            </p>
+            @if (User.Identity.IsAuthenticated 
+                && !Model.OwnerName.Equals(User.Identity.Name) 
+                && Model.State.Equals("Active"))
+            {
+                TempData["LotId"] = @Model.Id;
+                Html.RenderPartial("_RateForm");
+            }
+        </div>
+    </div>
+
+    <p>@Html.DisplayFor(model => model.Description)</p>
+
+        
+
+    <p>
+        <b>Owner</b>: @Html.DisplayFor(model => model.OwnerName)
+        <b>E-mail</b>: @Html.DisplayFor(model => model.OwnerEmail)
+    </p>
+    <p>
+        <b>Auction started at</b>: @Html.DisplayFor(model => model.StartDatetime.Date)
+    </p>
+    
+    <div>
+        @if (Model.OwnerName.Equals(User.Identity.Name))
+        {
+            if (ViewBag.CanEdit) 
+            {
+                <a class="btn btn-default" role="button" href="@Url.Action("Edit", "Lot", new {id = Model.Id})">Edit</a>
+            }
+            <form action="@Url.Action("Delete", "Lot", new {id = @Model.Id})" method="post">
+                <input class="btn btn-default" type="submit" name="delete" value="Delete" />
+            </form>
+        }
+    </div>
+    
+
+    <div id="rates">
+        <h4>Lot Rates</h4> 
+        <table style="width:100%" >
+            <tr id="rates-table">
+                <th>Rate</th>
+                <th>User</th> 
+                <th>DateTime</th>
+            </tr>
+            @foreach (var rate in ViewBag.Rates)
+            {
+                <tr>
+                    <td>@rate.RateSize</td>
+                    <td>@rate.UserName</td> 
+                    <td>@rate.Datetime</td>
+                </tr>
+            }
+        </table>
+    </div>
+    
+</div>
+
+
+@section Scripts {
+<script type="text/javascript" src="@Url.Content("~/Scripts/jquery.tmpl.js")"></script>
+    <script>
+        $(document).ready(function() {
+            $('#rate-form').submit(function (event) {
+                if (eval($('#RateSize').val()) <= 0)
+                    return;
+                event.preventDefault();
+                var data = $(this).serialize();
+                var url = $(this).attr('action');
+
+                $.post(url,
+                    data,
+                    function (response) {
+                        $('#price').html("<b>Price</b>: " + response.newPrice);
+                        var rate = $('#rate-template').tmpl(response.rate);
+                        rate.insertAfter( $('#rates-table'));
+                    });
+            });
+            
+        });
+    </script>
+
+    <script id="rate-template" type="text/x-jquery-tmpl">
+        <tr>
+            <td>${RateSize}</td>
+            <td>${User}</td>
+            <td>${Datetime}</td>
+        </tr>
+    </script>
+}

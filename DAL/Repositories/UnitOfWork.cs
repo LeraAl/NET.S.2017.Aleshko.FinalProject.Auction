@@ -3,6 +3,7 @@ using System.Data;
 using System.Data.Entity;
 using System.Data.Entity.Infrastructure;
 using System.Data.Entity.Validation;
+using System.Data.SqlClient;
 using DAL.Interfaces.Repositories;
 using DAL.Logger;
 
@@ -32,14 +33,14 @@ namespace DAL.Repositories
                 {
                     var entry = item.Entry;
                     var entityTypeName = entry.Entity.GetType().Name;
-                    
+
                     foreach (var subItem in item.ValidationErrors)
                     {
                         var message =
                             $"Error '{subItem.ErrorMessage}' occurred in {entityTypeName} at {subItem.PropertyName}";
                         _logger.Error(message);
                     }
-                    
+
                     // Roll back
                     switch (entry.State)
                     {
@@ -54,9 +55,21 @@ namespace DAL.Repositories
                             entry.State = EntityState.Unchanged;
                             break;
                     }
+
+                    throw;
                 }
-                
+
             }
+            catch (SqlException ex)
+            {
+                _logger.Error(ex.Message);
+                throw;
+            }
+        }
+
+        public void Dispose()
+        {
+            _context?.Dispose();
         }
     }
 }

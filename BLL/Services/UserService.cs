@@ -44,6 +44,7 @@ namespace BLL.Services
         public void AddRoleToUser(int userId, BLLRole role)
         {
             _roleRepository.AddRoleToUser(GetById(userId).ToDALUser(), role.ToDALRole());
+            _uow.Commit();
         }
 
         public IEnumerable<BLLRole> GetUserRoles(int userId)
@@ -65,6 +66,7 @@ namespace BLL.Services
         public void Delete(BLLUser user)
         {
             _userRepository.Delete(user.ToDALUser());
+            _uow.Commit();
         }
 
         public void UpdatePassword(int id, string newPassword)

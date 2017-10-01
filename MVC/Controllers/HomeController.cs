@@ -5,6 +5,9 @@ using System.Web;
 using System.Web.Mvc;
 using BLL.Interfaces.BLLEntities;
 using BLL.Interfaces.Interfaces;
+using BLL.Interfaces.Services;
+using MVC.Infrasrtucture.Mappers;
+using MVC.Models.Lot;
 
 namespace MVC.Controllers
 {
@@ -35,16 +38,12 @@ namespace MVC.Controllers
 
         public PartialViewResult GetLots(int? id)
         {
-            IEnumerable<BLLLot> lots;
+            IEnumerable<LotShortViewModel> lots;
             if (id == null || id == 0)
-            {
-                lots = _lotService.GetAll();
-            }
+                lots = _lotService.GetAll().Select(l => l.ToLotShortVM());
             else
-            {
-                lots = _lotService.GetByCategory((int)id);
-            }
-
+                lots = _lotService.GetByCategory((int)id).Select(l => l.ToLotShortVM());
+            
             return PartialView("_LotsList", lots);
         }
 
@@ -56,10 +55,18 @@ namespace MVC.Controllers
             return Json(lots, JsonRequestBehavior.AllowGet);
         }
 
+        public ActionResult GetImage(int id)
+        {
+            byte[] image = _lotService.GetById(id).Image;
+            if (image != null)
+            {
+                return File(image, "image/jpeg");
+            }
+            return null;
+        }
+
         public ActionResult Error()
         {
-            ViewBag.Message = "Your contact page.";
-
             return View();
         }
         

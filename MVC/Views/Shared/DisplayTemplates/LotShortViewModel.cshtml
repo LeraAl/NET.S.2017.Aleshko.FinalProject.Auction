@@ -1,0 +1,19 @@
+﻿@model MVC.Models.Lot.LotShortViewModel
+
+<div class="media well">
+    <div class="media-left media-middle">
+        @if (Model.Image != null)
+        {
+            <a href="@Url.Action("Details", "Lot", new {id = Model.Id})">
+                <img class="media-object" src="@Url.Action("GetImage", "Home", new {id = Model.Id})" alt="@Model.Name">
+            </a>
+        }
+    </div>
+    <div class="media-body">
+        <a href="@Url.Action("Details", "Lot", new {id = Model.Id})">
+            <h4 class="media-heading">@Model.Name</h4>
+        </a>
+        <p>Description: @Model.Description</p>
+        <p>Current price: @Model.CurrentPrice</p>
+    </div>
+</div>

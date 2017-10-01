@@ -1,8 +1,8 @@
 ﻿using System;
 
-namespace BLL.Interfaces.BLLEntities
+namespace MVC.Models.Lot
 {
-    public class BLLLot
+    public class LotViewModel
     {
         public int Id { get; set; }
 
@@ -16,14 +16,13 @@ namespace BLL.Interfaces.BLLEntities
 
         public decimal CurrentPrice { get; set; }
 
-        public int StateId { get; set; }
         public string State { get; set; }
 
-        public int OwnerId { get; set; }
-        public BLLUser Owner { get; set; }
+        public string OwnerName { get; set; }
 
-        public int CategoryId { get; set; }
-        public BLLCategory Category { get; set; }
+        public string OwnerEmail { get; set; }
+
+        public string Category { get; set; }
 
         public DateTime StartDatetime { get; set; }
     }

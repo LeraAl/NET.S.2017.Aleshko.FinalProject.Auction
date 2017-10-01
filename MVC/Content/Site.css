@@ -28,8 +28,24 @@ footer {
     left:5%;
     bottom: 0;
     width: 100%;
+    background: white;
 }
 .navbar-brand>img {
     padding: 7px 14px;
     height: 70px;
+}
+
+.media-object {
+    width: 100px;
+    height: 100px;
+}
+
+.img-lot-details {
+    height: 200px;
+    width: auto;
+    margin-right: 10px;
+}
+
+.input-group {
+    display: block;
 }

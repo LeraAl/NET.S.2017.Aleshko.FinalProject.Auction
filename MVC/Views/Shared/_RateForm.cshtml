@@ -1,0 +1,12 @@
+﻿@using (Html.BeginForm(actionName:"MakeRate", controllerName: "Lot", method: FormMethod.Post, htmlAttributes: new {id = "rate-form"})) 
+{
+    @Html.AntiForgeryToken()
+
+    <div class="input-group">
+        <input type="hidden" name="LotId" id="LotId" value="@ViewBag.LotId"/>
+        <input type="number" class="form-control" name="RateSize" id="RateSize" placeholder="Your rate">
+        <span class="input-group-btn">
+            <button class="btn btn-default" type="submit" id="make-rate-btn">Make rate</button>
+        </span>
+    </div>
+}

@@ -1,14 +1,14 @@
 ﻿@{
-    ViewBag.Title = "Auction";
-    TempData["Controller"] = "Home";
+    ViewBag.Title = "My Lots";
+    TempData["Controller"] = "Profile";
 }
 
-<div class = "col-xs-12 col-md-4 col-lg-2">
-    @{Html.RenderAction("CategoriesMenu");}
+<div class="col-xs-12 col-md-4 col-lg-2">
+    @{Html.RenderAction("CategoriesMenu", "Home");}
 </div>
-    
+
 <div class="col-lg-10 container body-content" id="lots">
-    @Html.Action("GetLots", new {id = 0})
+    @Html.Action("GetLots", "Profile", new { id = 0 })
 </div>
 
 @section Scripts{

@@ -46,11 +46,6 @@ namespace DAL.Repositories
                 .Select(l => l.ToDALLot());
         }
 
-        public void AddRate(int lotId, DALRate rate)
-        {
-            throw new NotImplementedException();
-        }
-
         public IEnumerable<DALLot> GetByName(string name)
         {
             return _context.Set<Lot>()
@@ -91,15 +86,15 @@ namespace DAL.Repositories
             Lot entity = _context.Set<Lot>().FirstOrDefault(l => l.Id == lot.Id);
             if (entity != null)
             {
-                lot.Name = lot.Name;
-                lot.Price = lot.Price;
-                lot.StartPrice = lot.StartPrice;
-                lot.StartDatetime = lot.StartDatetime;
-                lot.CategoryId = lot.CategoryId;
-                lot.Description = lot.Description;
-                lot.Image = lot.Image;
-                lot.StateId = lot.StateId;
-                lot.OwnerId = lot.OwnerId;
+                entity.Name = lot.Name;
+                entity.Price = lot.Price;
+                entity.StartPrice = lot.StartPrice;
+                entity.StartDatetime = lot.StartDatetime;
+                entity.CategoryId = lot.CategoryId;
+                entity.Description = lot.Description;
+                entity.Image = lot.Image;
+                entity.StateId = lot.StateId;
+                entity.OwnerId = lot.OwnerId;
 
                 _context.Entry(entity).State = EntityState.Modified;
             }

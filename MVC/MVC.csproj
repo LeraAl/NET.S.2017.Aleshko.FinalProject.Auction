@@ -162,15 +162,26 @@
     <Compile Include="App_Start\NinjectWebCommon.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\ErrorController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\LotController.cs" />
+    <Compile Include="Controllers\ProfileController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Infrasrtucture\Mappers\LotMappers.cs" />
     <Compile Include="Infrasrtucture\Mappers\UserMappers.cs" />
     <Compile Include="Infrasrtucture\NinjectDependencyResolver.cs" />
     <Compile Include="Models\Account\LoginModel.cs" />
     <Compile Include="Models\Account\RegisterModel.cs" />
-    <Compile Include="Models\LotViewModel.cs" />
+    <Compile Include="Models\Lot\LotCreateModel.cs" />
+    <Compile Include="Models\Lot\LotShortViewModel.cs" />
+    <Compile Include="Models\Lot\LotViewModel.cs" />
+    <Compile Include="Models\Profile\ChangePasswordModel.cs" />
+    <Compile Include="Models\Profile\ProfileEditModel.cs" />
+    <Compile Include="Models\Profile\ProfileViewModel.cs" />
+    <Compile Include="Models\RateCreateViewModel.cs" />
+    <Compile Include="Models\RateViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Providers\CustomMembershipProvider.cs" />
     <Compile Include="Providers\CustomRoleProvider.cs" />
@@ -193,6 +204,7 @@
     <Content Include="Scripts\jquery-1.10.2.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
     <Content Include="Scripts\jquery-ui.js" />
+    <Content Include="Scripts\jquery.tmpl.js" />
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
@@ -209,14 +221,24 @@
     </Content>
     <Content Include="Views\Web.config" />
     <Content Include="Views\_ViewStart.cshtml" />
-    <Content Include="Views\Shared\Error.cshtml" />
+    <None Include="Views\Error\PageNotFound.cshtml" />
+    <None Include="Views\Error\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
-    <Content Include="Views\Home\_CategoriesMenu.cshtml" />
+    <Content Include="Views\Shared\_CategoriesMenu.cshtml" />
     <Content Include="Views\Shared\_LotsList.cshtml" />
     <Content Include="Views\Account\Register.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Account\LogIn.cshtml" />
+    <Content Include="Views\Shared\DisplayTemplates\LotShortViewModel.cshtml" />
+    <Content Include="Views\Lot\Create.cshtml" />
+    <Content Include="Views\Lot\Details.cshtml" />
+    <Content Include="Views\Shared\_RateForm.cshtml" />
+    <Content Include="Views\Lot\Edit.cshtml" />
+    <Content Include="Views\Profile\Index.cshtml" />
+    <Content Include="Views\Profile\Lots.cshtml" />
+    <Content Include="Views\Profile\Edit.cshtml" />
+    <Content Include="Views\Profile\ChangePassword.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

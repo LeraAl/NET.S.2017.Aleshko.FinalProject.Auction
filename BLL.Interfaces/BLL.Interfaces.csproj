@@ -39,10 +39,10 @@
     <Compile Include="BLLEntities\BLLRate.cs" />
     <Compile Include="BLLEntities\BLLRole.cs" />
     <Compile Include="BLLEntities\BLLUser.cs" />
-    <Compile Include="Interfaces\ICategoryService.cs" />
-    <Compile Include="Interfaces\IUserService.cs" />
-    <Compile Include="Interfaces\IRateService.cs" />
-    <Compile Include="Interfaces\ILotService.cs" />
+    <Compile Include="Services\ICategoryService.cs" />
+    <Compile Include="Services\IUserService.cs" />
+    <Compile Include="Services\IRateService.cs" />
+    <Compile Include="Services\ILotService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup />
