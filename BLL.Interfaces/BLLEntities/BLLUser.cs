@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-
-namespace BLL.Interfaces.BLLEntities
+﻿namespace BLL.Interfaces.BLLEntities
 {
     public class BLLUser
     {

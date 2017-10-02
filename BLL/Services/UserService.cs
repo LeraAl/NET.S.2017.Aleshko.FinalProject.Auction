@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using BLL.Interfaces.BLLEntities;
-using BLL.Interfaces.Interfaces;
+using BLL.Interfaces.Services;
 using BLL.Mappers;
 using DAL.Interfaces.Repositories;
 
@@ -47,6 +47,17 @@ namespace BLL.Services
             _uow.Commit();
         }
 
+        public void DeleteRoleFromUser(int userId, BLLRole role)
+        {
+            _roleRepository.DeleteRoleFromUser(GetById(userId).ToDALUser(), role.ToDALRole());
+            _uow.Commit();
+        }
+
+        public BLLRole GetRoleByName(string role)
+        {
+            return _roleRepository.GetByName(role).ToBLLRole();
+        }
+
         public IEnumerable<BLLRole> GetUserRoles(int userId)
         {
             return _roleRepository.GetUserRoles(userId).Select(r => r.ToBLLRole());
@@ -79,6 +90,7 @@ namespace BLL.Services
 
         public void Update(BLLUser user)
         {
+
             _userRepository.Update(user.ToDALUser());
             _uow.Commit();
         }

@@ -1,8 +1,7 @@
 ﻿using System.Collections.Generic;
-using System.Runtime.CompilerServices;
 using BLL.Interfaces.BLLEntities;
 
-namespace BLL.Interfaces.Interfaces
+namespace BLL.Interfaces.Services
 {
     public interface IUserService
     {
@@ -10,7 +9,10 @@ namespace BLL.Interfaces.Interfaces
         IEnumerable<BLLUser> GetAllByRole(int roleId);
         BLLUser GetById(int id);
         BLLUser GetByLogin(string login);
+
         void AddRoleToUser(int userId, BLLRole role);
+        void DeleteRoleFromUser(int userId, BLLRole role);
+        BLLRole GetRoleByName(string role);
         IEnumerable<BLLRole> GetUserRoles(int userId);
         IEnumerable<BLLRole> GetAllRoles();
 

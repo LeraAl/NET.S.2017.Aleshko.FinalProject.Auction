@@ -1,26 +1,22 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Net;
-using System.Web;
 using System.Web.Helpers;
 using System.Web.Mvc;
-using BLL.Interfaces.Interfaces;
 using BLL.Interfaces.Services;
 using MVC.Infrasrtucture.Mappers;
-using MVC.Models.Lot;
 using MVC.Models.Profile;
 
 namespace MVC.Controllers
 {
-    [Authorize]
     public class ProfileController : Controller
     {
         private readonly ILotService _lotService;
         private readonly IUserService _userService;
+        private readonly IRateService _rateService;
 
-        public ProfileController(ILotService lotService, IUserService userService)
+        public ProfileController(ILotService lotService, IUserService userService, IRateService rateService)
         {
+            _rateService = rateService ?? throw new ArgumentNullException(nameof(rateService));
             _userService = userService ?? throw new ArgumentNullException(nameof(userService));
             _lotService = lotService ?? throw new ArgumentNullException(nameof(lotService));
         }
@@ -33,11 +29,7 @@ namespace MVC.Controllers
             return View(userVM);
         }
 
-        public ActionResult Lots()
-        {
-            return View();
-        }
-
+        
         public PartialViewResult GetLots(int? id)
         {
             int userId = _userService.GetByLogin(User.Identity.Name).Id;
@@ -92,5 +84,36 @@ namespace MVC.Controllers
             }
             return View(model);
         }
+
+        public ActionResult Lots()
+        {
+            return View();
+        }
+
+        public ActionResult BoughtLots()
+        {
+            int userId = _userService.GetByLogin(User.Identity.Name).Id;
+            var lots = _lotService.GetByState("Sold")
+                .Where(l => _rateService.GetLotLastRate(l.Id).UserId == userId)
+                .Select(l => l.ToLotShortVM());
+
+            return View("_LotsList", lots);
+        }
+
+        public ActionResult SoldLots()
+        {
+            int userId = _userService.GetByLogin(User.Identity.Name).Id;
+            var lots = _lotService.GetUserLots(userId).Where(l => l.State.Equals("Sold")).Select(l => l.ToLotShortVM());
+
+            return View("_LotsList", lots);
+        }
+
+        public ActionResult Rates()
+        {
+            int userId = _userService.GetByLogin(User.Identity.Name).Id;
+            var rates = _rateService.GetUserRates(userId).OrderBy(r => r.Datetime).Select(r => r.ToRateVM());
+            return View(rates);
+        }
+
     }
 }

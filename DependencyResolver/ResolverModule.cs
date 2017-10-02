@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data.Entity;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using BLL.Interfaces.Interfaces;
+﻿using System.Data.Entity;
 using BLL.Interfaces.Services;
 using BLL.Services;
 using DAL.Interfaces.Repositories;

@@ -42,6 +42,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AuctionContext.cs" />
+    <Compile Include="AuctionDatabaseInitializer.cs" />
     <Compile Include="Category.cs" />
     <Compile Include="Lot.cs" />
     <Compile Include="LotState.cs" />

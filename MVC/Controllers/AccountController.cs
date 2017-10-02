@@ -1,15 +1,14 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 using System.Web.Security;
-using BLL.Interfaces.Interfaces;
+using BLL.Interfaces.Services;
 using MVC.Models.Account;
 using MVC.Providers;
 
 namespace MVC.Controllers
 {
+    [AllowAnonymous]
     public class AccountController : Controller
     {
         private readonly IUserService _userService;
@@ -18,8 +17,6 @@ namespace MVC.Controllers
         {
             _userService = userService ?? throw new ArgumentNullException(nameof(userService));
         }
-        
-
         #region Register
 
         [HttpGet]
@@ -46,7 +43,7 @@ namespace MVC.Controllers
                     FormsAuthentication.SetAuthCookie(model.Login, model.RememberMe);
                     return RedirectToAction("Index", "Home");
                 }
-                return View("Error");
+                return RedirectToAction("Error", "Error");
             }
             return View(model);
         }
@@ -55,6 +52,7 @@ namespace MVC.Controllers
 
         #region LogIn LogOut
 
+        [Authorize]
         [HttpGet]
         public ActionResult LogIn(string returnUrl)
         {
@@ -68,6 +66,13 @@ namespace MVC.Controllers
             if (!userExist)
             {
                 ModelState.AddModelError("", "Incorrect login or password");
+                return View(model);
+            }
+
+            int userId = _userService.GetByLogin(model.Login).Id;
+            if (_userService.GetUserRoles(userId).Any(r => r.Name.Equals("Banned")))
+            {
+                ModelState.AddModelError("", "User is banned.");
                 return View(model);
             }
 

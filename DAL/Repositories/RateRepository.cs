@@ -52,7 +52,7 @@ namespace DAL.Repositories
         {
             return _context.Set<Rate>()
                 .Where(r => r.LotId == lotId)
-                .OrderBy(r => r.Datetime)
+                .OrderByDescending(r => r.Datetime)
                 .FirstOrDefault()
                 .ToDALRate();
         }
@@ -63,8 +63,7 @@ namespace DAL.Repositories
 
             _context.Set<Rate>().Add(rate.ToRate());
         }
-
-        //ToAsk Можно ли оставить NotImplementedException, если  этого действия не должно быть?
+        
         public void Update(DALRate rate)
         {
             if (rate == null) throw new ArgumentNullException(nameof(rate));

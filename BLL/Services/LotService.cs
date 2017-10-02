@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using BLL.Interfaces.BLLEntities;
 using BLL.Interfaces.Services;
 using BLL.Mappers;
@@ -139,11 +138,16 @@ namespace BLL.Services
 
         public bool CanUserDelete(int id)
         {
-            return !_rateRepository.GetByLotId(id).Any();
+            return _lotRepository.GetById(id).StateId == _lotStateRepository.GetByName("Active").Id;
         }
 
         public void Delete(BLLLot lot)
         {
+            var rates = _rateRepository.GetByLotId(lot.Id);
+            foreach (var rate in rates)
+            {
+                _rateRepository.Delete(rate);
+            }
             _lotRepository.Delete(lot.ToDALLot());
             _uow.Commit();
         }

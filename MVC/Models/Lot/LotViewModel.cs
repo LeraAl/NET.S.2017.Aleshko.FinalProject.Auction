@@ -25,5 +25,7 @@ namespace MVC.Models.Lot
         public string Category { get; set; }
 
         public DateTime StartDatetime { get; set; }
+
+        public string FinalBuyer { get; set; }
     }
 }

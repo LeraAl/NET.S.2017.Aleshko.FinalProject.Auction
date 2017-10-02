@@ -1,7 +1,5 @@
 ﻿using System;
 using BLL.Interfaces.BLLEntities;
-using BLL.Interfaces.Interfaces;
-using BLL.Interfaces.Services;
 using MVC.Models.Lot;
 
 namespace MVC.Infrasrtucture.Mappers
@@ -69,6 +67,19 @@ namespace MVC.Infrasrtucture.Mappers
                  Image = lot.Image,
                  CategoryId = lot.CategoryId
              };
+         }
+
+         public static LotModeratorViewModel ToLotModeratoVM(this BLLLot lot)
+         {
+             var lotVM = new LotModeratorViewModel()
+             {
+                 Id = lot.Id,
+                 Name = lot.Name,
+                 StartDatetime = lot.StartDatetime,
+                 OwnerName = lot.Owner.Login,
+                 OwnerEmail = lot.Owner.Email
+             };
+             return lotVM;
          }
     }
 }

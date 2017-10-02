@@ -1,6 +1,6 @@
 ﻿@model MVC.Models.Profile.ProfileViewModel
 
-@{
+@*@{
     ViewBag.Title = @Model.Login;
 }
 
@@ -45,7 +45,10 @@
         </dd>
         
     </dl>
-</div>
+</div>*@
+
+@{Html.RenderPartial("_UserView", Model);}
+
 <p>
     <a class="btn btn-default" role="button" href="@Url.Action("Edit", "Profile")">Edit</a>
     <a class="btn btn-default" role="button" href="@Url.Action("ChangePassword", "Profile")">Change Password</a>

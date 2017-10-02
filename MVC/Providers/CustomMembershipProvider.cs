@@ -3,10 +3,8 @@
 using System;
 using System.Linq;
 using System.Web.Helpers;
-using System.Web.Mvc;
 using System.Web.Security;
-using BLL.Interfaces.BLLEntities;
-using BLL.Interfaces.Interfaces;
+using BLL.Interfaces.Services;
 using MVC.Infrasrtucture.Mappers;
 using MVC.Models.Account;
 

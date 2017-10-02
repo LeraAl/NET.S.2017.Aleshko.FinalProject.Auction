@@ -1,0 +1,39 @@
+﻿@model MVC.Models.Lot.LotViewModel
+
+<div class="container">
+    @if (Model.Image != null)
+    {
+        <img class="img-thumbnail pull-left img-lot-details" src="@Url.Action("GetImage", "Home", new {id = Model.Id})" alt="@Model.Name">
+    }
+    <div>
+        <p>
+            <b>Category</b>: @Html.DisplayFor(model => model.Category)
+        </p>
+        <p id="price">
+            <b>Price</b>: @Html.DisplayFor(model => model.CurrentPrice)
+        </p>
+        <p>
+            <b>Start Price</b>: @Html.DisplayFor(model => model.StartPrice)
+        </p>
+        <p>
+            <b>Lot state</b>: @Html.DisplayFor(model => model.State)
+        </p>
+        @if (Model.State.Equals("Sold"))
+        {
+            <p>
+                <b>Buyer</b>: @Html.DisplayFor(model => model.FinalBuyer)
+            </p>
+        }
+    </div>
+</div>
+<div class="container">
+    <h5>@Html.DisplayFor(model => model.Description)</h5>
+
+    <p>
+        <b>Owner</b>: @Html.DisplayFor(model => model.OwnerName)
+        <b>E-mail</b>: @Html.DisplayFor(model => model.OwnerEmail)
+    </p>
+    <p>
+        <b>Auction started at</b>: @Html.DisplayFor(model => model.StartDatetime)
+    </p>
+</div>

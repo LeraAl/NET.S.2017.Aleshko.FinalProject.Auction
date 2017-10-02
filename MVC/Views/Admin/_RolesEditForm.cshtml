@@ -1,0 +1,48 @@
+﻿@model MVC.Models.Profile.RolesEditModel
+
+@using (Html.BeginForm(actionName:"EditRoles", controllerName: "Admin"))
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+        <h4>Edit Roles</h4>
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.Id)
+
+        <div>
+            @Html.LabelFor(model => model.IsAdmin, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <div class="checkbox">
+                    @Html.EditorFor(model => model.IsAdmin)
+                    @Html.ValidationMessageFor(model => model.IsAdmin, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+
+        <div>
+            @Html.LabelFor(model => model.IsModerator, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <div class="checkbox">
+                    @Html.EditorFor(model => model.IsModerator)
+                    @Html.ValidationMessageFor(model => model.IsModerator, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+        
+        <div>
+            @Html.LabelFor(model => model.IsBanned, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <div class="checkbox">
+                    @Html.EditorFor(model => model.IsBanned)
+                    @Html.ValidationMessageFor(model => model.IsBanned, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div >
+                <input type="submit" value="Save" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}

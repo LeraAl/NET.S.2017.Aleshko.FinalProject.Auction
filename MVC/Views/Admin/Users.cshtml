@@ -1,0 +1,48 @@
+﻿@model IEnumerable<MVC.Models.Profile.ProfileForAdminModel>
+
+@{
+    ViewBag.Title = "Users";
+}
+
+<h2>Users</h2>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Login)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Email)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.LotCount)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.RateCount)
+        </th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            <a href="@Url.Action("UserDetails", "Admin", new {id = item.Id})">@Html.DisplayFor(modelItem => item.Login)</a>
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Email)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.LotCount)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.RateCount)
+        </td>
+    </tr>
+}
+
+</table>

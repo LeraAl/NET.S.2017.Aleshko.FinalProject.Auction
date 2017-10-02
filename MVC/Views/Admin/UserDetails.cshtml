@@ -1,0 +1,9 @@
+﻿@model MVC.Models.Profile.ProfileViewModel
+
+@{
+    ViewBag.Title = "User Details";
+}
+
+@{Html.RenderPartial("_UserView", Model);}
+
+@{Html.RenderPartial("_RolesEditForm", TempData["Roles"]);}

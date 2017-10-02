@@ -49,3 +49,7 @@ footer {
 .input-group {
     display: block;
 }
+
+.lot-btn-group>form {
+    display: initial;
+}

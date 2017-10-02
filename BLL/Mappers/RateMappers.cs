@@ -1,6 +1,4 @@
 ﻿using BLL.Interfaces.BLLEntities;
-using BLL.Interfaces.Interfaces;
-using BLL.Interfaces.Services;
 using DAL.Interfaces.DTO;
 using DAL.Interfaces.Repositories;
 

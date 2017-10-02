@@ -1,18 +1,15 @@
 namespace ORM.Migrations
 {
-    using System;
-    using System.Data.Entity;
     using System.Data.Entity.Migrations;
-    using System.Linq;
 
-    internal sealed class Configuration : DbMigrationsConfiguration<ORM.AuctionContext>
+    internal sealed class Configuration : DbMigrationsConfiguration<AuctionContext>
     {
         public Configuration()
         {
             AutomaticMigrationsEnabled = false;
         }
 
-        protected override void Seed(ORM.AuctionContext context)
+        protected override void Seed(AuctionContext context)
         {
             //  This method will be called after migrating to the latest version.
 

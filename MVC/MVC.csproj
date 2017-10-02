@@ -162,24 +162,31 @@
     <Compile Include="App_Start\NinjectWebCommon.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\ErrorController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LotController.cs" />
+    <Compile Include="Controllers\ModeratorController.cs" />
     <Compile Include="Controllers\ProfileController.cs" />
+    <Compile Include="Filters\CustomAuthAttribute.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Infrasrtucture\Mappers\LotMappers.cs" />
+    <Compile Include="Infrasrtucture\Mappers\RateMappers.cs" />
     <Compile Include="Infrasrtucture\Mappers\UserMappers.cs" />
     <Compile Include="Infrasrtucture\NinjectDependencyResolver.cs" />
     <Compile Include="Models\Account\LoginModel.cs" />
     <Compile Include="Models\Account\RegisterModel.cs" />
     <Compile Include="Models\Lot\LotCreateModel.cs" />
+    <Compile Include="Models\Lot\LotModeratorViewModel.cs" />
     <Compile Include="Models\Lot\LotShortViewModel.cs" />
     <Compile Include="Models\Lot\LotViewModel.cs" />
     <Compile Include="Models\Profile\ChangePasswordModel.cs" />
     <Compile Include="Models\Profile\ProfileEditModel.cs" />
+    <Compile Include="Models\Profile\ProfileForAdminModel.cs" />
     <Compile Include="Models\Profile\ProfileViewModel.cs" />
+    <Compile Include="Models\Profile\RolesEditModel.cs" />
     <Compile Include="Models\RateCreateViewModel.cs" />
     <Compile Include="Models\RateViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -187,6 +194,8 @@
     <Compile Include="Providers\CustomRoleProvider.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="App_Data\AuctionDatabase.mdf" />
+    <Content Include="App_Data\AuctionDatabase_log.ldf" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\Images\fox.png" />
@@ -221,6 +230,9 @@
     </Content>
     <Content Include="Views\Web.config" />
     <Content Include="Views\_ViewStart.cshtml" />
+    <Content Include="Views\Admin\Users.cshtml" />
+    <Content Include="Views\Admin\UserDetails.cshtml" />
+    <Content Include="Views\Admin\_RolesEditForm.cshtml" />
     <None Include="Views\Error\PageNotFound.cshtml" />
     <None Include="Views\Error\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
@@ -239,10 +251,13 @@
     <Content Include="Views\Profile\Lots.cshtml" />
     <Content Include="Views\Profile\Edit.cshtml" />
     <Content Include="Views\Profile\ChangePassword.cshtml" />
+    <Content Include="Views\Shared\_UserView.cshtml" />
+    <Content Include="Views\Moderator\Lots.cshtml" />
+    <Content Include="Views\Moderator\LotDetails.cshtml" />
+    <Content Include="Views\Shared\_LotView.cshtml" />
+    <Content Include="Views\Profile\Rates.cshtml" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="App_Data\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
   </ItemGroup>

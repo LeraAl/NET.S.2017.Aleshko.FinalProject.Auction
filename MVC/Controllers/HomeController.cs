@@ -1,16 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
-using BLL.Interfaces.BLLEntities;
-using BLL.Interfaces.Interfaces;
 using BLL.Interfaces.Services;
 using MVC.Infrasrtucture.Mappers;
 using MVC.Models.Lot;
 
 namespace MVC.Controllers
 {
+    [AllowAnonymous]
     public class HomeController : Controller
     {
 
@@ -40,21 +38,16 @@ namespace MVC.Controllers
         {
             IEnumerable<LotShortViewModel> lots;
             if (id == null || id == 0)
-                lots = _lotService.GetAll().Select(l => l.ToLotShortVM());
+                lots = _lotService.GetByState("Active").Select(l => l.ToLotShortVM());
             else
-                lots = _lotService.GetByCategory((int)id).Select(l => l.ToLotShortVM());
+            {
+                int activeState = _lotService.GetStateId("Active");
+                lots = _lotService.GetByCategory((int)id).Where(l => l.StateId == activeState).Select(l => l.ToLotShortVM());
+            }
             
             return PartialView("_LotsList", lots);
         }
-
-        public JsonResult SearchLot(string term)
-        {
-            var lots = _lotService.GetLotByRegex(term)
-                .Select(l => new {id = l.Id, label = l.Name, value = l.Name});
-
-            return Json(lots, JsonRequestBehavior.AllowGet);
-        }
-
+        
         public ActionResult GetImage(int id)
         {
             byte[] image = _lotService.GetById(id).Image;
@@ -64,11 +57,5 @@ namespace MVC.Controllers
             }
             return null;
         }
-
-        public ActionResult Error()
-        {
-            return View();
-        }
-        
     }
 }

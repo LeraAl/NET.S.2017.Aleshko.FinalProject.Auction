@@ -1,5 +1,4 @@
-﻿using System;
-using DAL.Interfaces.DTO;
+﻿using DAL.Interfaces.DTO;
 using ORM;
 
 namespace DAL.Mappers

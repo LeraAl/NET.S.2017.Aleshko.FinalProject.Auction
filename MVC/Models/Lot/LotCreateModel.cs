@@ -16,6 +16,7 @@ namespace MVC.Models.Lot
 
         [Required]
         [Display(Name = "Start Price")]
+        [Range(0, 10000000)]
         public decimal StartPrice { get; set; }
 
         [Required]

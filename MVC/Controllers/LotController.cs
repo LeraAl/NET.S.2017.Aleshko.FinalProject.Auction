@@ -1,11 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using BLL.Interfaces.BLLEntities;
-using BLL.Interfaces.Interfaces;
 using BLL.Interfaces.Services;
 using MVC.Infrasrtucture.Mappers;
 using MVC.Models;
@@ -13,7 +11,6 @@ using MVC.Models.Lot;
 
 namespace MVC.Controllers
 {
-    [Authorize]
     public class LotController : Controller
     {
         private readonly ILotService _lotService;
@@ -37,7 +34,9 @@ namespace MVC.Controllers
                 return HttpNotFound();
 
             var lot = _lotService.GetById((int) id).ToLotVM();
-            ViewBag.CanEdit = _lotService.CanUserDelete(lot.Id);
+            if (lot.State.Equals("Sold"))
+                lot.FinalBuyer = _rateService.GetLotLastRate(lot.Id).UserName;
+            ViewBag.CanEdit = _lotService.CanUserUpdate(lot.Id);
             ViewBag.Rates = _rateService.GetLotRates(lot.Id).OrderByDescending(r => r.Datetime);
             return View(lot);
         }
@@ -98,20 +97,21 @@ namespace MVC.Controllers
             return View(model);
         }
 
-        //// GET: Lot/Delete/5
-        //public ActionResult Delete(int id)
-        //{
-        //    return View();
-        //}
-
-        // POST: Lot/Delete/5
         [HttpPost]
         public ActionResult Delete(int id)
         {
             var lot = _lotService.GetById(id);
-            lot.StateId = _lotService.GetStateId("DeletedByUser");
-            _lotService.UpdateState(lot);
+            _lotService.Delete(lot);
             return RedirectToAction("Lots", "Profile");
+        }
+
+        [HttpPost]
+        public ActionResult Sell(int id)
+        {
+            var lot = _lotService.GetById(id);
+            lot.StateId = _lotService.GetStateId("Sold");
+            _lotService.UpdateState(lot);
+            return RedirectToAction("Details", "Lot", new {id = id});
         }
 
         [HttpPost]
@@ -137,7 +137,8 @@ namespace MVC.Controllers
                                     newPrice = price});
                 
             }
-
+            if (Request.IsAjaxRequest())
+                return Json(null);
             return RedirectToAction("Details", new { id = model.LotId });
         }
     }

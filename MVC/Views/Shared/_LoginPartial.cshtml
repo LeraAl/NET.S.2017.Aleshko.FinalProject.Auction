@@ -7,13 +7,21 @@
                 <li><a href="@Url.Action("Index", "Profile")">My profile</a></li>
                 <li><a href="@Url.Action("Create", "Lot")">Add lot</a></li>
                 <li><a href="@Url.Action("Lots", "Profile")">My lots</a></li>
+                <li><a href="@Url.Action("Rates", "Profile")">My rates</a></li>
+
+                <li role="separator" class="divider"></li>
+                
+                <li><a href="@Url.Action("SoldLots", "Profile")">Sold lots</a></li>
+                <li><a href="@Url.Action("BoughtLots", "Profile")">Bought lots</a></li>
                 @if (User.IsInRole("Administrator"))
                 {
-                    <li><a href="#">Users edit</a></li>
+                    <li role="separator" class="divider"></li>
+                    <li><a href="@Url.Action("Users", "Admin")">Users edit(Admin)</a></li>
                 }
                 @if (User.IsInRole("Moderator"))
                 {
-                    <li><a href="#">Lots edit</a></li>
+                    <li role="separator" class="divider"></li>
+                    <li><a href="@Url.Action("Lots", "Moderator")">Lots edit(Moderator)</a></li>
                 }
                 <li role="separator" class="divider"></li>
                 <li>@Html.ActionLink("Log out", "LogOut", "Account")</li>

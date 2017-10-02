@@ -64,7 +64,7 @@ namespace DAL.Repositories
         public DALRole GetByName(string name)
         {
             return _context.Set<Role>()
-                .FirstOrDefault(r => String.Equals(name, r.Name, StringComparison.InvariantCultureIgnoreCase))
+                .FirstOrDefault(r => name.Equals(r.Name, StringComparison.InvariantCultureIgnoreCase))
                 .ToDALRole();
         }
 

@@ -1,0 +1,17 @@
+﻿@model MVC.Models.Lot.LotViewModel
+
+@{
+    ViewBag.Title = "LotDetails";
+}
+
+<h2>@Model.Name</h2>
+
+<div class="container">
+    @{ Html.RenderPartial("_LotView", Model);}   
+    
+    <form action="@Url.Action("DeleteLot", "Moderator", new {id = @Model.Id})" method="post">
+        <input class="btn btn-default" type="submit" name="delete" value="Delete"/>
+    </form>
+
+</div>
+

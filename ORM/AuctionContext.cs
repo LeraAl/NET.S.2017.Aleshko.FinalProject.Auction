@@ -4,6 +4,11 @@ namespace ORM
 {
     public class AuctionContext : DbContext
     {
+        static AuctionContext()
+        {
+            Database.SetInitializer(new AuctionDatabaseInitializer());
+        }
+
         public AuctionContext()
             : base("name=AuctionContext")
         {
@@ -98,7 +103,7 @@ namespace ORM
 
             modelBuilder.Entity<User>()
                 .HasMany(e => e.Lots)
-                .WithRequired(e => e.User)
+                .WithRequired(e => e.User) 
                 .HasForeignKey(e => e.OwnerId)
                 .WillCascadeOnDelete(false);
 

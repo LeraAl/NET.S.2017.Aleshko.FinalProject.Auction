@@ -1,0 +1,35 @@
+﻿@model IEnumerable<MVC.Models.RateViewModel>
+
+@{
+    ViewBag.Title = "Rates";
+}
+
+<h2>Rates</h2>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.LotName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.RateSize)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Datetime)
+        </th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            <a href="@Url.Action("Details", "Lot", new{id = item.LotId})">@Html.DisplayFor(modelItem => item.LotName)</a>
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.RateSize)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Datetime)
+        </td>
+    </tr>
+}
+</table>

@@ -1,7 +1,5 @@
-﻿using System;
-using System.Text;
+﻿using System.Text;
 using BLL.Interfaces.BLLEntities;
-using BLL.Interfaces.Interfaces;
 using DAL.Interfaces.DTO;
 using DAL.Interfaces.Repositories;
 

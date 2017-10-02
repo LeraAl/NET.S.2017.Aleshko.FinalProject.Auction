@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using DAL.Interfaces.DTO;
 
 namespace DAL.Interfaces.Repositories
@@ -8,7 +7,6 @@ namespace DAL.Interfaces.Repositories
     {
         IEnumerable<TEntity> GetAll();
         TEntity GetById(int id);
-        //TEntity GetByPredicate(Func<TEntity, bool> predicate);
 
         void Create(TEntity entity);
         void Update(TEntity entity);

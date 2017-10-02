@@ -1,7 +1,5 @@
-﻿using System.Diagnostics;
-using System.Web.Helpers;
+﻿using System.Web.Helpers;
 using BLL.Interfaces.BLLEntities;
-using MVC.Models;
 using MVC.Models.Account;
 using MVC.Models.Profile;
 
@@ -38,6 +36,17 @@ namespace MVC.Infrasrtucture.Mappers
                 FirstName = model.FirstName,
                 LastName = model.LastName,
                 Email = model.Email
+            };
+        }
+
+        public static ProfileForAdminModel ToProfileForAdmin(this BLLUser model)
+        {
+            return new ProfileForAdminModel()
+            {
+                Id = model.Id,
+                Login = model.Login,
+                Email = model.Email,
+                Name = $"{model.FirstName} {model.LastName}"
             };
         }
     }
