@@ -20,6 +20,7 @@ namespace ORM
         public virtual DbSet<Rate> Rates { get; set; }
         public virtual DbSet<Role> Roles { get; set; }
         public virtual DbSet<User> Users { get; set; }
+		public virtual DbSet<Favorite> Favorites { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
@@ -112,6 +113,18 @@ namespace ORM
                 .WithRequired(e => e.Users)
                 .HasForeignKey(e => e.UserId)
                 .WillCascadeOnDelete(false);
-        }
+
+	        modelBuilder.Entity<User>()
+		        .HasMany(e => e.Favorites)
+		        .WithRequired(e => e.User)
+		        .HasForeignKey(e => e.UserId)
+		        .WillCascadeOnDelete(true);
+
+	        modelBuilder.Entity<Lot>()
+		        .HasMany(e => e.Favorites)
+		        .WithRequired(e => e.Lot)
+		        .HasForeignKey(e => e.LotId)
+		        .WillCascadeOnDelete(true);
+		}
     }
 }

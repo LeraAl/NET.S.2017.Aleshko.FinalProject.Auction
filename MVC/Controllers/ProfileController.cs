@@ -97,6 +97,8 @@ namespace MVC.Controllers
                 .Where(l => _rateService.GetLotLastRate(l.Id).UserId == userId)
                 .Select(l => l.ToLotShortVM());
 
+	        ViewBag.Title = "Bought Lots";
+
             return View("_LotsList", lots);
         }
 
@@ -105,10 +107,22 @@ namespace MVC.Controllers
             int userId = _userService.GetByLogin(User.Identity.Name).Id;
             var lots = _lotService.GetUserLots(userId).Where(l => l.State.Equals("Sold")).Select(l => l.ToLotShortVM());
 
-            return View("_LotsList", lots);
+	        ViewBag.Title = "Sold Lots";
+
+			return View("_LotsList", lots);
         }
 
-        public ActionResult Rates()
+	    public ActionResult FavoriteLots()
+	    {
+		    int userId = _userService.GetByLogin(User.Identity.Name).Id;
+		    var lots = _lotService.GetFavorites(userId).Select(l => l.ToLotShortVM());
+
+		    ViewBag.Title = "Favorite Lots";
+
+			return View("_LotsList", lots);
+	    }
+
+		public ActionResult Rates()
         {
             int userId = _userService.GetByLogin(User.Identity.Name).Id;
             var rates = _rateService.GetUserRates(userId).OrderBy(r => r.Datetime).Select(r => r.ToRateVM());

@@ -12,11 +12,15 @@ namespace BLL.Interfaces.Services
         IEnumerable<BLLLot> GetByCategory(int categoryId);
         IEnumerable<BLLLot> GetLotByRegex(string regex);
         IEnumerable<BLLLot> GetByState(string state);
+	    IEnumerable<BLLLot> GetFavorites(int userId);
 
         int GetStateId(string name);
         string GetLotStateName(int stateId);
 
         void AddRate(int lotId, BLLRate rate);
+	    void AddToFavorites(int lotId, int userId);
+	    void RemoveFromFavorites(int lotId, int userId);
+
 
         void Create(BLLLot lot);
         bool CanUserUpdate(int id);

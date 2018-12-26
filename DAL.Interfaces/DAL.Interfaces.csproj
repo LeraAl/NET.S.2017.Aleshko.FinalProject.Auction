@@ -35,6 +35,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DTO\DALCategory.cs" />
+    <Compile Include="DTO\DALFavorite.cs" />
     <Compile Include="DTO\DALLot.cs" />
     <Compile Include="DTO\DALLotState.cs" />
     <Compile Include="DTO\DALRate.cs" />

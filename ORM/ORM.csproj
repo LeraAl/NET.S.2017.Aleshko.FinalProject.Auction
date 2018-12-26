@@ -44,6 +44,7 @@
     <Compile Include="AuctionContext.cs" />
     <Compile Include="AuctionDatabaseInitializer.cs" />
     <Compile Include="Category.cs" />
+    <Compile Include="Favorite.cs" />
     <Compile Include="Lot.cs" />
     <Compile Include="LotState.cs" />
     <Compile Include="Migrations\201709212013143_Init.cs" />
@@ -57,6 +58,10 @@
     <Compile Include="Migrations\201709281459513_EditPasswordColumn.cs" />
     <Compile Include="Migrations\201709281459513_EditPasswordColumn.Designer.cs">
       <DependentUpon>201709281459513_EditPasswordColumn.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201812222034505_AddFavorites.cs" />
+    <Compile Include="Migrations\201812222034505_AddFavorites.Designer.cs">
+      <DependentUpon>201812222034505_AddFavorites.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -77,6 +82,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201709281459513_EditPasswordColumn.resx">
       <DependentUpon>201709281459513_EditPasswordColumn.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201812222034505_AddFavorites.resx">
+      <DependentUpon>201812222034505_AddFavorites.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -2,7 +2,7 @@
 
 namespace ORM
 {
-    public class AuctionDatabaseInitializer : CreateDatabaseIfNotExists<AuctionContext>
+    public class AuctionDatabaseInitializer : DropCreateDatabaseIfModelChanges<AuctionContext>
     {
         protected override void Seed(AuctionContext db)
         {

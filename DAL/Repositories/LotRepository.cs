@@ -46,7 +46,36 @@ namespace DAL.Repositories
                 .Select(l => l.ToDALLot());
         }
 
-        public IEnumerable<DALLot> GetByName(string name)
+	    public IEnumerable<DALLot> GetFavouriteLots(int userId)
+	    {
+		    return _context.Set<Favorite>()
+			    .Where(fav => fav.UserId == userId)
+			    .Select(fav => fav.Lot)
+			    .ToList()
+			    .Select(l => l.ToDALLot());
+	    }
+
+	    public void AddToFavorites(int lotId, int userId)
+	    {
+		    Favorite favorite = new Favorite()
+		    {
+				LotId = lotId,
+				UserId = userId,
+		    };
+
+		    _context.Set<Favorite>().Add(favorite);
+	    }
+
+	    public void RemoveFromFavorites(int lotId, int userId)
+	    {
+		    Favorite favorite = _context.Set<Favorite>()
+			    .FirstOrDefault(fav => fav.UserId == userId && fav.LotId == lotId);
+
+			if (favorite != null)
+				_context.Set<Favorite>().Remove(favorite);
+	    }
+
+	    public IEnumerable<DALLot> GetByName(string name)
         {
             return _context.Set<Lot>()
                 .Where(l => String.Equals(name, l.Name, StringComparison.InvariantCultureIgnoreCase))

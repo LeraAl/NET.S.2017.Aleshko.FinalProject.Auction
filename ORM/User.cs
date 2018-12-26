@@ -44,5 +44,8 @@ namespace ORM
 
         [SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Role> Roles { get; set; }
-    }
+
+	    [SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+	    public virtual ICollection<Favorite> Favorites { get; set; }
+	}
 }

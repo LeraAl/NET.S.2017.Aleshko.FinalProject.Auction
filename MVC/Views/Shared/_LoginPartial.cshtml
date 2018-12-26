@@ -11,6 +11,7 @@
 
                 <li role="separator" class="divider"></li>
                 
+                <li><a href="@Url.Action("FavoriteLots", "Profile")">Favorite lots</a></li>
                 <li><a href="@Url.Action("SoldLots", "Profile")">Sold lots</a></li>
                 <li><a href="@Url.Action("BoughtLots", "Profile")">Bought lots</a></li>
                 @if (User.IsInRole("Administrator"))

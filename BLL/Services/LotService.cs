@@ -76,7 +76,13 @@ namespace BLL.Services
                 .Select(l => l.ToBLLLot(_lotStateRepository, _userRepository, _categoryRepository));
         }
 
-        public int GetStateId(string stateName)
+	    public IEnumerable<BLLLot> GetFavorites(int userId)
+	    {
+		    return _lotRepository.GetFavouriteLots(userId)
+			    .Select(lot => lot.ToBLLLot(_lotStateRepository, _userRepository, _categoryRepository));
+	    }
+
+	    public int GetStateId(string stateName)
         {
             return _lotStateRepository.GetByName(stateName).Id;
         }
@@ -97,7 +103,21 @@ namespace BLL.Services
             _uow.Commit();
         }
 
-        public void Create(BLLLot lot)
+	    public void AddToFavorites(int lotId, int userId)
+	    {
+		    _lotRepository.AddToFavorites(lotId, userId);
+
+			_uow.Commit();
+	    }
+
+	    public void RemoveFromFavorites(int lotId, int userId)
+	    {
+		    _lotRepository.RemoveFromFavorites(lotId, userId);
+
+		    _uow.Commit();
+		}
+
+	    public void Create(BLLLot lot)
         {
             _lotRepository.Create(lot.ToDALLot());
             _uow.Commit();

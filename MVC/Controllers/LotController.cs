@@ -33,12 +33,14 @@ namespace MVC.Controllers
             if (id == null)
                 return HttpNotFound();
 
-            var lot = _lotService.GetById((int) id).ToLotVM();
+	        int userId = _userService.GetByLogin(User.Identity.Name).Id;
+			var lot = _lotService.GetById((int) id).ToLotVM();
             if (lot.State.Equals("Sold"))
                 lot.FinalBuyer = _rateService.GetLotLastRate(lot.Id).UserName;
             ViewBag.CanEdit = _lotService.CanUserUpdate(lot.Id);
             ViewBag.Rates = _rateService.GetLotRates(lot.Id).OrderByDescending(r => r.Datetime);
-            return View(lot);
+	        ViewBag.IsFavorite = _lotService.GetFavorites(userId).Any(l => l.Id == id);
+			return View(lot);
         }
         
 
@@ -105,7 +107,23 @@ namespace MVC.Controllers
             return RedirectToAction("Lots", "Profile");
         }
 
-        [HttpPost]
+	    [HttpPost]
+	    public ActionResult DeleteFavorite(int id)
+	    {
+		    int userId = _userService.GetByLogin(User.Identity.Name).Id;
+		    _lotService.RemoveFromFavorites(id, userId);
+			return RedirectToAction("Details", new { id = id });
+		}
+
+	    [HttpPost]
+	    public ActionResult AddFavorite(int id)
+	    {
+			int userId = _userService.GetByLogin(User.Identity.Name).Id;
+		    _lotService.AddToFavorites(id, userId);
+		    return RedirectToAction("Details", new { id = id });
+		}
+
+		[HttpPost]
         public ActionResult Sell(int id)
         {
             var lot = _lotService.GetById(id);

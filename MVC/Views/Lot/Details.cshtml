@@ -36,7 +36,21 @@
             <form action="@Url.Action("Delete", "Lot", new {id = @Model.Id})" method="post">
                 <input class="btn btn-default" type="submit" name="delete" value="Delete"/>
             </form>
-
+        }
+        else
+        {
+            if (ViewBag.IsFavorite)
+            {
+                <form action="@Url.Action("DeleteFavorite", "Lot", new {id = @Model.Id})" method="post">
+                    <input class="btn btn-secondary" type="submit" name="delete" value="Remove from favorite"/>
+                </form>
+            }
+            else
+            {
+                <form action="@Url.Action("AddFavorite", "Lot", new {id = @Model.Id})" method="post">
+                    <input class="btn btn-warning" type="submit" name="delete" value="Add to favorite"/>
+                </form>
+            }
         }
     </div>
     
